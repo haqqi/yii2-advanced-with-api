@@ -8,11 +8,16 @@
 
 namespace api\modules\v2\controllers;
 
-use yii\web\Controller;
+use api\base\ApiController;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     public function actionRegister() {
-        echo 'register success';
+        $response = [
+            'name' => 'Register Success',
+            'message' => ''
+        ];
+
+        return $response;
     }
 }

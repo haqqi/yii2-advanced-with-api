@@ -1,21 +1,17 @@
 <?php
 namespace api\controllers;
 
-use yii\web\Controller;
+use api\base\ApiController;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends ApiController
 {
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        echo 'API is running.';
+        return [
+            'message' => 'API is running.'
+        ];
     }
 }

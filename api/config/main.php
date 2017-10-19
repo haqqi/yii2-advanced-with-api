@@ -34,8 +34,13 @@ return [
                 ],
             ],
         ],
+        'user'         => [
+            'identityClass'   => \common\models\User::className(),
+            'enableAutoLogin' => false,
+            'enableSession'   => false
+        ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'class' => \api\components\ErrorHandler::className()
         ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
