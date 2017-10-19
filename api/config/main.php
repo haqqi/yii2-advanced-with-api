@@ -25,15 +25,6 @@ return [
             // no need CSRF token
             'enableCsrfValidation' => false,
         ],
-        'user'         => [
-            'identityClass'   => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie'  => ['name' => '_identity-api', 'httpOnly' => true],
-        ],
-        'session'      => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-api',
-        ],
         'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [
@@ -53,6 +44,9 @@ return [
 
             ],
         ],
+        'response'     => [
+            'format' => \yii\web\Response::FORMAT_JSON
+        ]
     ],
     'params'              => $params,
 ];
