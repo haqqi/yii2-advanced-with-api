@@ -1,4 +1,5 @@
 <?php
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -7,36 +8,37 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-api',
-    'basePath' => dirname(__DIR__),
+    'id'                  => 'ezypay-api',
+    'basePath'            => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
-    'bootstrap' => [
+    'bootstrap'           => [
         'log',
         'v2'
     ],
-    'modules' => [
+    'modules'             => [
         'v2' => [
             'class' => \api\modules\v2\Module::className()
         ]
     ],
-    'components' => [
-        'request' => [
-            'csrfParam' => '_csrf-api',
+    'components'          => [
+        'request'      => [
+            // no need CSRF token
+            'enableCsrfValidation' => false,
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
+        'user'         => [
+            'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
+            'identityCookie'  => ['name' => '_identity-api', 'httpOnly' => true],
         ],
-        'session' => [
+        'session'      => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-api',
         ],
-        'log' => [
+        'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets'    => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
@@ -44,13 +46,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'urlManager' => [
+        'urlManager'   => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+            'showScriptName'  => false,
+            'rules'           => [
 
             ],
         ],
     ],
-    'params' => $params,
+    'params'              => $params,
 ];
