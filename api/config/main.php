@@ -10,8 +10,15 @@ return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => [
+        'log',
+        'v2'
+    ],
+    'modules' => [
+        'v2' => [
+            'class' => \api\modules\v2\Module::className()
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-api',
