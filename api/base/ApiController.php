@@ -2,6 +2,7 @@
 
 namespace api\base;
 
+use api\exceptions\HttpExceptionWithData;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
@@ -40,4 +41,19 @@ class ApiController extends Controller
 
         return $behaviors;
     }
+
+    public function afterAction($action, $result)
+    {
+        if (!$result instanceof \api\components\Response) {
+            throw new HttpExceptionWithData(500, 'Response should be instance of \api\components\Response');
+        }
+
+        if (($message = $result->validate()) !== true) {
+            throw new HttpExceptionWithData(500, $message);
+        }
+
+        return parent::afterAction($action, $result);
+    }
+
+
 }
