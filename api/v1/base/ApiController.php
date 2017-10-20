@@ -1,17 +1,19 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Haqqi
+ * Date: 10/20/2017
+ * Time: 9:31 AM
+ */
 
-namespace api\base;
+namespace api\v1\base;
 
-use api\exceptions\HttpExceptionWithData;
+use api\components\HttpException;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
 use yii\rest\Controller;
 use yii\web\Response;
 
-/**
- * Class ApiController
- * @package api\base
- */
 class ApiController extends Controller
 {
     /**
@@ -44,16 +46,14 @@ class ApiController extends Controller
 
     public function afterAction($action, $result)
     {
-        if (!$result instanceof \api\components\Response) {
-            throw new HttpExceptionWithData(500, 'Response should be instance of \api\components\Response');
+        if (!$result instanceof \api\v1\components\Response) {
+            throw new HttpException(500, 'Response should be instance of \api\components\Response');
         }
 
         if (($message = $result->validate()) !== true) {
-            throw new HttpExceptionWithData(500, $message);
+            throw new HttpException(500, $message);
         }
 
         return parent::afterAction($action, $result);
     }
-
-
 }
