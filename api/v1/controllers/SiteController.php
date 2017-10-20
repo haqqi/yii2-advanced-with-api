@@ -1,21 +1,22 @@
 <?php
+
 namespace api\v1\controllers;
 
-use yii\web\Controller;
+use api\v1\base\ApiController;
+use api\v1\components\Response;
 
-/**
- * Site controller
- */
-class SiteController extends Controller
+class SiteController extends ApiController
 {
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        echo 'API is running.';
+        $response = new Response();
+
+        $response->name    = 'API Status';
+        $response->message = 'API is running';
+        $response->code    = 0;
+        $response->status  = 200;
+        $response->data    = null;
+
+        return $response;
     }
 }
