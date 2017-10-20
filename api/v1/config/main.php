@@ -7,29 +7,27 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-api-v1',
-    'basePath' => dirname(__DIR__),
+    'id'                  => 'app-api-v1',
+    'basePath'            => dirname(__DIR__),
     'controllerNamespace' => 'api\v1\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
-    'components' => [
-        'request' => [
-            'csrfParam' => '_csrf-api',
+    'bootstrap'           => ['log'],
+    'modules'             => [],
+    'components'          => [
+        'request'      => [
+            'enableCookieValidation' => false,
+            'enableCsrfCookie'       => false,
+            'enableCsrfValidation'   => false
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
+        'user'         => [
+            'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
+            'identityCookie'  => ['name' => '_identity-api', 'httpOnly' => true],
         ],
-        'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-api-v1',
-        ],
-        'log' => [
+        'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets'    => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
@@ -37,13 +35,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'urlManager' => [
+        'urlManager'   => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+            'showScriptName'  => false,
+            'rules'           => [
 
             ],
         ],
     ],
-    'params' => $params,
+    'params'              => $params,
 ];
