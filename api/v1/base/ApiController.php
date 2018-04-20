@@ -27,7 +27,7 @@ class ApiController extends Controller
 
         // only allow json as return
         $behaviors['contentNegotiator'] = [
-            'class'   => ContentNegotiator::className(),
+            'class'   => ContentNegotiator::class,
             'formats' => [
                 'application/json' => Response::FORMAT_JSON
             ]
@@ -36,7 +36,7 @@ class ApiController extends Controller
         // setup authenticator
         // @todo: setup app key app secret auth, bearer, etc
         $behaviors['authenticators'] = [
-            'class' => CompositeAuth::className()
+            'class' => CompositeAuth::class
         ];
 
         // @todo: add app version filter

@@ -33,7 +33,7 @@ return [
             ],
         ],
         'errorHandler' => [
-            'class' => \api\components\ErrorHandler::className()
+            'class' => \api\components\ErrorHandler::class
         ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
